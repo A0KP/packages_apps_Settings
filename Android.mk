@@ -1,23 +1,31 @@
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_JAVA_LIBRARIES := bouncycastle conscrypt telephony-common ims-common
-LOCAL_STATIC_JAVA_LIBRARIES := \
-	android-support-v4 \
-	android-support-v13 \
-	jsr305 \
-	org.cyanogenmod.platform.internal
+LOCAL_JAVA_LIBRARIES := bouncycastle \
+                        conscrypt \
+                        ims-common \
+                        org.cyanogenmod.hardware \
+                        telephony-common \
+
+LOCAL_STATIC_JAVA_LIBRARIES := android-support-v4 \
+                               android-support-v13 \
+                               AndroidAsync \
+                               gson \
+                               jsr305 \
+                               org.cyanogenmod.platform.internal
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_SRC_FILES := \
-        $(call all-java-files-under, src) \
-        src/com/android/settings/EventLogTags.logtags
+LOCAL_SRC_FILES := $(call all-java-files-under, src) \
+                   $(call all-java-files-under, ../ROMControl/src) \
+                   src/com/android/display/IPPService.aidl \
+                   src/com/android/settings/EventLogTags.logtags
 
-LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res
+LOCAL_RESOURCE_DIR := $(LOCAL_PATH)/res \
+                      $(LOCAL_PATH)/../ROMControl/res
 
-LOCAL_SRC_FILES += \
-        src/com/android/display/IPPService.aidl
+LOCAL_AAPT_FLAGS += --auto-add-overlay \
+                    --extra-packages com.aokp.romcontrol
 
 LOCAL_PACKAGE_NAME := Settings
 LOCAL_CERTIFICATE := platform
@@ -34,7 +42,6 @@ include frameworks/opt/setupwizard/navigationbar/common.mk
 include frameworks/opt/setupwizard/library/common.mk
 include frameworks/base/packages/SettingsLib/common.mk
 
-LOCAL_JAVA_LIBRARIES += org.cyanogenmod.hardware
 include $(BUILD_PACKAGE)
 
 # Use the following include to make our test apk.

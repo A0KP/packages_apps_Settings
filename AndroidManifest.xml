@@ -2768,5 +2768,13 @@
             </intent-filter>
         </activity>
 
+        <!-- Start of AOKP activities -->
+
+        <activity android:name="com.aokp.romcontrol.MainActivity"
+            android:label="@string/rom_control" >
+        </activity>
+
+        <!-- End of AOKP activities -->
+
     </application>
 </manifest>

@@ -132,6 +132,8 @@ import com.android.settings.wifi.SavedAccessPointsWifiSettings;
 import com.android.settings.wifi.WifiSettings;
 import com.android.settings.wifi.p2p.WifiP2pSettings;
 
+import com.aokp.romcontrol.MainActivity;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -262,6 +264,7 @@ public class SettingsActivity extends Activity
 
     // Show only these settings for restricted users
     private int[] SETTINGS_FOR_RESTRICTED = {
+            R.id.romcontrol,
             R.id.wireless_section,
             R.id.wifi_settings,
             R.id.bluetooth_settings,
@@ -292,6 +295,7 @@ public class SettingsActivity extends Activity
     };
 
     private static final String[] ENTRY_FRAGMENTS = {
+            MainActivity.class.getName(),
             WirelessSettings.class.getName(),
             WifiSettings.class.getName(),
             AdvancedWifiSettings.class.getName(),
